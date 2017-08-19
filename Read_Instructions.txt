@@ -1,0 +1,88 @@
+# INSTALLATION OF LIBRARIES AND APPLICATIONS
+# First Install the following packages in the Raspberry Pi Terminal
+   
+   sudo apt-get update
+   
+   sudo apt-get upgrade
+   
+   sudo apt-get install gcc
+   
+   sudo apt-get install libopencv-dev
+   
+   sudo apt-get install tesseract-ocr
+   
+   sudo apt-get install espeak
+ 
+# Also required is the IP Webcam app available in the Android Playstore which is free to install.
+
+# INSTALLING Translation-master Library
+
+# Go to https://github.com/littlecodersh/translation
+# Clone/Download the library which is in the form of a zip file.
+# Go to the terminal on the Pi and type the following and press enter after each:
+              
+               unzip translation-master.zip
+     
+# This will allow you to extract the contents of the zip file in your home/pi/ folder. 
+               
+                                ls
+      
+# This will list the contents of the folder.
+
+                cd translation-master/
+
+ # This will create a directory by the name translation-master
+
+                                 ls
+
+ # Again to display contents and look for setup.py file.
+
+                  sudo python setup.py install
+
+ # This will install the library in the IDLE 2.7 environment.
+
+                   sudo python3 setup.py install
+
+# This will install the library in the IDLE 3 environment.
+
+# For this project, I suggest you to use IDLE 3 for better results since it includes later & advanced functions as compared to IDLE 2.7.
+
+RUNNING THE CODE:
+
+# First, execute the python code labeled "convert.py" on IDLE 3.0 and with a stable internet connection to check if there are any errors. If everything is  installed correctly, there should'nt be errors. 
+
+# In the terminal, open the nano editor to execute a new C++ file with the command
+
+                             sudo nano file_name.cpp
+
+# In the nano editor type the program as given in the file "Image_To_Voice".
+
+# Assuming that IP webcam has been properly installed, start the session in the IP Webcam application and go to start server at the bottom. See the IP address on the stream and verify if it is the same in the program code as well. If not change it to that Address. Also make sure that your phone and the Raspberry Pi 3 are on the same network. I suggest you to use a Wi-fi or connect the Pi to the mobile hotspot of the phone using IP Webcam. 
+
+# Save it with the command "Ctrl+O" and press Enter to Confirm. 
+
+# Press "Ctrl+X" to exit editor and return to terminal.
+
+# Because of the installation of different packages, the file has to be compiled using the command 
+
+                    g++ $(pkg-config --cflags --libs opencv) -o file_name file_name.cpp
+
+# This command must be used everytime the file has been edited/changed to recompile. And make sure to pay attention to double Hyphen and spaces very carefully.
+
+# If there are any stray errors, type that line again since copying and pasting from file directly might be the problem resulting in unidentified characters.
+
+# Have a few words/lines of texts printed out on a paper or displayed on the monitor ready before executing the program on the desk.
+
+# Execute the program by typing "./file_name" in the terminal.
+
+# Focus your mobile camera on the word/text on executing the program.
+
+# This would create a (.tif) file and (.txt) file called "srctext".  
+
+# The program, as mentioned before, also has the option to convert the extracted text into more than 50 languages supported by the Microsoft BING Translator. Upon being asked the language to covert to, type the code associated with the language you wish to convert to. For the codes, visit the github page mentioned in point (1) under Installing Translation Master Library. If you want the playback to be in english itself, i) type "en" OR ii) comment out the line in the C++ code invoking the convert.py file and change the espeak command to read srctext.txt.
+
+# The output file is created with the name "Translatedtext.txt" which is then read out by espeak through the speaker.
+
+# Play around with commands and test the program for different time duration delays and longer sentences.
+
+# Assuming a speaker/Headphone is connected to the 3.5mm jack on the Pi, voice output in the preferred language is played.
